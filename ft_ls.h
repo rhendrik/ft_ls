@@ -1,5 +1,6 @@
 #ifndef FT_LS_H
 #define FT_LS_H
+#define CURR_DIR "."
 #define R "-R"
 #define L "-l"
 #define A "-a"
@@ -18,5 +19,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+typedef struct opts{
+	int r;
+	int l;
+	int a;
+	int lr;
+	int t;
+	int ls;
+	/*fp*/
+	char **flagstr;
+} fs;
 
 #endif
