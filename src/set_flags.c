@@ -10,4 +10,4 @@ void set_bools(char *av, fs flags)
 		flags.lr = 1;
 	if (ft_strcmp(T, av) == 0)
 		flags.t = 1;
-}
+}int

@@ -31,4 +31,14 @@ typedef struct opts{
 	char **flagstr;
 } fs;
 
+typedef struct sfile{
+	char *filename;
+} t_file;
+
+void set_bools(char *av, fs flags);
+int flagcmp(char *av);
+int dircmp(char *av);
+int check_flags(char **av, int ac, fs flags);
+int just_ls(DIR *current);
+
 #endif
