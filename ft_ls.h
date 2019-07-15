@@ -32,7 +32,14 @@ typedef struct opts{
 } fs;
 
 typedef struct sfile{
-	char *filename;
+	char *mod;
+	int links;
+	char *uid;
+	char *gid;
+	int bytes;
+	char *modtime;
+	char* f_name;
+
 } t_file;
 
 void set_bools(char *av, fs flags);

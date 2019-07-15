@@ -1,18 +1,18 @@
 NAME = ft_ls
 LIB = libft/libft.a
-SRC = src/main.c
+SRC = src/
 FLAGS = gcc -Wall -Werror -Wextra
 INCL = -I
 
-.PHONY = clean fclean re lib
+.PHONY = clean fclean re
 
 all: $(NAME)
 
 $(NAME): lib
-	$(FLAGS) $(INCL) $(SRC) $(LIB)
+	$(FLAGS) $(INCL) $(SRC)*.c $(LIB)
 
 lib:
-	$(FLAGS) $(INCL) -c libft/*.c
+	$(FLAGS) $(INCL) -c ./libft/*.c
 	ar rc $(LIB) *.o 
 	make clean
 
