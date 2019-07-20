@@ -74,7 +74,7 @@ int main(int ac, char **av)
 	(void)counter;
 	(void)av;
 
-	counter = ac;
+/*	counter = ac;*/
 	current = NULL;
 	flags.r = 0;
 	if (ac == 1)
@@ -94,6 +94,8 @@ int main(int ac, char **av)
 			return (-1);
 		}
 	}
+
+	/*resolve_flags(fs flags, char **av)*/
 	
 	return (0);
 }
