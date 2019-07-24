@@ -5,6 +5,7 @@
 
 typedef struct node{
 	char *filenames[255];
+	struct dirent *dp;
 	struct tree *next;
 } tree;
 

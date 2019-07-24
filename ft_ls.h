@@ -39,7 +39,7 @@ typedef struct sfile{
 	int bytes;
 	char *modtime;
 	char* f_name;
-	s_file *next;
+	struct s_file *next;
 	DIR *dir;
 	struct dirent *dp;
 
