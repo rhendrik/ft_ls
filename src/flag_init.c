@@ -9,7 +9,7 @@ ff flag_init(ff flags, char **av)
 
 	i = 1;
 	j = 0;
-	k = 0;
+	k = 1;
 	while(av[i])
 	{
 		if ((dummy = opendir(av[i])) != NULL)
@@ -51,12 +51,14 @@ ff flag_init(ff flags, char **av)
 				else
 				{
 					flags.er = 1;
+					acc_err(av[i]);
 					return(flags);
 				}
 			}
 
 		}
 		flags.er = 1;
+		acc_err(av[i]);
 		return(flags);
 	}
 

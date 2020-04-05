@@ -20,7 +20,7 @@ int main(int ac, char **av)
 		flags = flag_init(flags, av);
 		if(flags.er == 1)
 		{
-			return(acc_err(av[1]));
+			return(0);
 		}
 		else
 		{

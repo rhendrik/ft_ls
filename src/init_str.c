@@ -9,5 +9,6 @@ ff init_str(ff flags)
         flags.t = 0;
         flags.ll = 0;
 	flags.er = 0;
+	flags.dirs[1] = ft_strcpy(flags.dirs[1], ".");
 	return(flags);
 }
