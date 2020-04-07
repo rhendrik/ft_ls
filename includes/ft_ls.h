@@ -29,5 +29,6 @@ ff flag_init(ff flags, char **av);
 ff init_str(ff flags);
 int acc_err(char *avi);
 int recur(ff flags, char *dir);
+int recur(ff flags, char *d);
 
 # endif
