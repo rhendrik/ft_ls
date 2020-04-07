@@ -50,13 +50,13 @@ int recur(ff flags, char *d)
 			if(entry->d_name[0] != '.')
 			{
 				i++;
-				if(i % 13 != 0)
-					pad(entry->d_name, 16);
-				else
-				{
+	//			if(i % 13 != 0)
+				//	pad(entry->d_name, 16);
+	//			else
+	//			{
 					ft_putstr(entry->d_name);
 					ft_putchar('\n');
-				}
+	//			}
 			}
 		}
 	}
