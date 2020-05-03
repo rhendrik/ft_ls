@@ -11,7 +11,10 @@ int main(int ac, char **av)
 	if(ac == 1)
 	{
 		if (b_print(dir) == 0)
+		{
+			closedir(dir);
 			return (0);
+		}
 	}
 	else
 	{
@@ -19,13 +22,15 @@ int main(int ac, char **av)
 		flags = flag_init(flags, av);
 		if(flags.er == 1)
 		{
+			closedir(dir);
 			return(0);
 		}
 		else
 		{
-			if(flags.ur == 1)
-				return(recur(flags, "."));
+			closedir(dir);
+			return(exec_flags(flags));
 		}
 	}
+	closedir(dir);
 	return(0);
 }

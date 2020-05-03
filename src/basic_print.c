@@ -15,7 +15,9 @@ int b_print(DIR *dir)
 			}
 		}
 		ft_putendl("");
+		closedir(dir);
 		return (0);
 	}
+	closedir(dir);
 	return (1);
 }
