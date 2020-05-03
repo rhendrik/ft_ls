@@ -3,58 +3,34 @@
 ff flag_init(ff flags, char **av)
 {
 	int i;
-	int j;
-	int k;
 	DIR *dummy;
+	char *tmp;
+	int j;
 
 	i = 1;
 	j = 1;
-	k = 1;
+	flags.dirs[0] = ft_strnew(3);
+	flags.dirs[0] = ft_strcpy(flags.dirs[0], ".");
 	while(av[i])
 	{
-		if ((dummy = opendir(av[i])) != NULL)
+		if(ft_strcmp("-a", av[i]) ==0)
 		{
-			flags.dirs[k] = ft_strnew(ft_strlen(av[i]) + 1);
-			flags.dirs[k] = ft_strcpy(flags.dirs[k], av[i]);
-			k++;
+			flags.a = 1;
+			i++;
+			continue;
 		}
-		else if(av[i][0] == '-')
+		tmp = ft_strnew(3 + ft_strlen(av[i]));
+		tmp = ft_strjoin("./", av[i]);
+		if ((dummy = opendir(tmp)) != NULL)
 		{
-			while(av[i][j])
+			if(dummy->d_type == DT_REG)
 			{
-				if(av[i][j] == 't')
-				{
-					flags.t = 1;
-					j++;
-					continue;
-				}
-				else if(av[i][j] == 'r')
-				{
-					flags.lr = 1;
-					j++;
-					continue;
-				}
-				else if(av[i][j] == 'R')
-				{
-					flags.ur = 1;
-					j++;
-					continue;
-				}
-				else if(av[i][j] == 'l')
-				{
-					flags.l = 1;
-					j++;
-					continue;
-				}
-				else if(av[i][j] == 'a')
-				{
-					flags.a = 1;
-					j++;
-					continue;
-				}
-
+				flags.dirs[j] = ft_strnew(ft_strlen(avi) + 1);
+				flags.dirs[j] = ft_strcpy(flags.dirs[j], av[i]);
+				j++;
+				i++;
+				continue;
 			}
-
 		}
 		else
 		{
@@ -65,5 +41,10 @@ ff flag_init(ff flags, char **av)
 		i++;
 	}
 
+	if(flags.dirs[0] == NULL)
+	{
+		flags.dirs[0] = (char *)malloc(3 * sizeof(char));
+		flags.dirs[0] = ft_strcpy(flags.dirs[0], ".");
+	}
 	return (flags);
 }
