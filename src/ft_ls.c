@@ -1,5 +1,11 @@
 #include "../includes/ft_ls.h"
 
+void put_spc(char *str)
+{
+	ft_putstr(str);
+	ft_putchar(' ');
+}
+
 int main(int ac, char **av)
 {
 	DIR *dir;
@@ -28,13 +34,6 @@ int main(int ac, char **av)
 		else
 		{
 			exec_flags(flags, dir);
-			// comment this out
-			int i = 0;
-			while(ft_strcmp(flags.files[i], "end\n") != 0)
-			{
-				ft_putendl(flags.files[i++]);
-			}
-			return (0);
 		}
 	}
 	closedir(dir);

@@ -32,5 +32,6 @@ int recur(ff flags, char *dir);
 int recur(ff flags, char *d);
 int exec_flags(ff flags, DIR *dir);
 int is_file(char *path);
+void put_spc(char *str);
 
 # endif
