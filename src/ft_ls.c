@@ -33,7 +33,10 @@ int main(int ac, char **av)
 		}
 		else
 		{
-			exec_flags(flags, dir);
+			if(ft_strcmp(flags.files[0], "end\n") != 0)
+				exec_flags(flags, dir, ".");
+			else
+				exec_flags_files(flags, dir);
 		}
 	}
 	closedir(dir);

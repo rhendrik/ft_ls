@@ -89,6 +89,9 @@ ff flag_init(ff flags, char **av)
 		}
 		i++;
 	}
-	flags = set_file(flags, j, "end\n");
+	if(flags.files[0] != NULL)
+		flags = set_file(flags, j, "end\n");
+	else
+		flags = set_file(flags, 0, "end\n");
 	return (flags);
 }

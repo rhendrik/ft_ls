@@ -48,7 +48,7 @@ int print_tmp(char **tmp)
 		}
 		i = 0;
 		j = 0;
-		while(ft_strcmp(tmp[i], "end\n")!= 0)
+		while(ft_strcmp(tmp[i], "end\n") == 0)
 		{
 			if(tmp[i][j] == '.')
 				j++;
@@ -67,7 +67,7 @@ int print_tmp(char **tmp)
 	return (0);
 }
 
-int exec_flags(ff flags, DIR *dir)
+int exec_flags(ff flags, DIR *dir, char *dname)
 {
 	char **tmp;
 	int i;
@@ -77,8 +77,7 @@ int exec_flags(ff flags, DIR *dir)
 	i = 0;
 	(void)i;
 	(void)tmp;
-	if(ft_strcmp(flags.files[0], "end\n") == 0)
-		dir = opendir(".");
+	dir = opendir(dname);
 	if(flags.a == 1)
 	{
 		while((entry = readdir(dir)) != NULL)
@@ -103,5 +102,13 @@ int exec_flags(ff flags, DIR *dir)
 
 	print_tmp(tmp);
 	ft_putendl("");
+	return (0);
+}
+
+int exec_flags_files(ff flags, DIR *dir)
+{
+	(void)dir;
+	(void)flags;
+	ft_putendl("This works");
 	return (0);
 }
