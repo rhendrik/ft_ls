@@ -20,8 +20,8 @@ typedef struct flags {
 	int ur;
 	int t;
 	int ll;
-	char **dirs;
 	int er;
+	char **files;
 } ff;
 
 int b_print(DIR *dir);
@@ -30,6 +30,7 @@ ff init_str(ff flags);
 int acc_err(char *avi);
 int recur(ff flags, char *dir);
 int recur(ff flags, char *d);
-int exec_flags(ff flags);
+int exec_flags(ff flags, DIR *dir);
+int is_file(char *path);
 
 # endif

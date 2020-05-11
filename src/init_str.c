@@ -9,8 +9,6 @@ ff init_str(ff flags)
         flags.t = 0;
         flags.ll = 0;
 	flags.er = 0;
-	flags.dirs = (char **)malloc(100 * sizeof (char *));
-	flags.dirs[1] = ft_strnew(3);
-	flags.dirs[1] = ft_strcpy(flags.dirs[1], ".");
+	flags.files[0] = ft_strnew(0);
 	return(flags);
 }

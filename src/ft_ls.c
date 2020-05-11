@@ -27,8 +27,14 @@ int main(int ac, char **av)
 		}
 		else
 		{
-			closedir(dir);
-			return(exec_flags(flags));
+			exec_flags(flags, dir);
+			// comment this out
+			int i = 0;
+			while(ft_strcmp(flags.files[i], "end\n") != 0)
+			{
+				ft_putendl(flags.files[i++]);
+			}
+			return (0);
 		}
 	}
 	closedir(dir);

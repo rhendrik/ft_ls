@@ -1,38 +1,87 @@
 #include "../includes/ft_ls.h"
 
-ff flag_init(ff flags, char **av)
+int is_file(char *path)
 {
-	int i;
-	DIR *dummy;
-	char *tmp;
-	int j;
+	struct stat buffer;
+	int exist;
 
-	i = 1;
-	j = 1;
-	flags.dirs[0] = ft_strnew(3);
-	flags.dirs[0] = ft_strcpy(flags.dirs[0], ".");
-	while(av[i])
+	exist = stat(path, &buffer);
+	if (exist == 0)
+		return (1);
+	return (0);
+}
+
+ff check_flags(ff flags, char *flag)
+{
+	int i = 1;
+	while(flag[i])
 	{
-		if(ft_strcmp("-a", av[i]) ==0)
+		if(flag[i] == 'a')
 		{
 			flags.a = 1;
 			i++;
-			continue;
 		}
-		tmp = ft_strnew(3 + ft_strlen(av[i]));
-		tmp = ft_strjoin("./", av[i]);
-		if ((dummy = opendir(tmp)) != NULL)
+		else if(flag[i] == 'l')
 		{
-			if(dummy->d_type == DT_REG)
-			{
-				flags.dirs[j] = ft_strnew(ft_strlen(avi) + 1);
-				flags.dirs[j] = ft_strcpy(flags.dirs[j], av[i]);
-				j++;
-				i++;
-				continue;
-			}
+			flags.l = 1;
+			i++;
+		}
+		else if(flag[i] == 'r')
+		{
+			flags.lr = 1;
+			i++;
+		}
+		else if(flag[i] == 'R')
+		{
+			flags.ur = 1;
+			i++;
+		}
+		else if(flag[i] == 't')
+		{
+			flags.t = 1;
+			i++;
 		}
 		else
+			flags.er = 1;
+		return(flags);
+	}
+	return(flags);
+}
+
+ff set_file(ff flags, int pos, char *av)
+{
+	flags.files[pos] = ft_strnew(ft_strlen(av) + 1);
+	flags.files[pos] = ft_strcpy(flags.files[pos], av);
+	return (flags);
+
+}
+
+ff flag_init(ff flags, char **av)
+{
+	int i;
+	int j = 0;
+	DIR *dummy;
+
+	i = 1;
+	while(av[i])
+	{
+		if(av[i][0] == '-')
+		{
+			flags = check_flags(flags, av[i]);
+			if(flags.er == 1)
+			{
+				acc_err(av[i]);
+				return(flags);
+			}
+			i++;
+			continue;
+		}
+		else if (is_file(av[i]) == 1)
+		{
+			flags = set_file(flags, j, av[i]);
+			j++;
+		}
+		else if((dummy = opendir(av[i]))== NULL)
 		{
 			flags.er = 1;
 			acc_err(av[i]);
@@ -40,11 +89,6 @@ ff flag_init(ff flags, char **av)
 		}
 		i++;
 	}
-
-	if(flags.dirs[0] == NULL)
-	{
-		flags.dirs[0] = (char *)malloc(3 * sizeof(char));
-		flags.dirs[0] = ft_strcpy(flags.dirs[0], ".");
-	}
+	flags = set_file(flags, j, "end\n");
 	return (flags);
 }
