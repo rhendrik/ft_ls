@@ -34,5 +34,6 @@ int exec_flags(ff flags, DIR *dir, char *dname);
 int is_file(char *path);
 void put_spc(char *str);
 int exec_flags_files(ff flags, DIR *dir);
+char *set_end();
 
 # endif

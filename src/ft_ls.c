@@ -1,5 +1,14 @@
 #include "../includes/ft_ls.h"
 
+char *set_end()
+{
+	char *ret;
+
+	ret = ft_strnew(5);
+	ret = ft_strcpy(ret, "end\n");
+	return (ret);
+}
+
 void put_spc(char *str)
 {
 	ft_putstr(str);
@@ -33,7 +42,7 @@ int main(int ac, char **av)
 		}
 		else
 		{
-			if(ft_strcmp(flags.files[0], "end\n") != 0)
+			if(ft_strcmp(flags.files[0], "end\n") == 0)
 				exec_flags(flags, dir, ".");
 			else
 				exec_flags_files(flags, dir);

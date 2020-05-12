@@ -75,9 +75,8 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 
 	tmp = (char**)malloc(1024 * sizeof(char));
 	i = 0;
-	(void)i;
-	(void)tmp;
-	dir = opendir(dname);
+	if((dir = opendir(dname)) == NULL)
+		return (-1);
 	if(flags.a == 1)
 	{
 		while((entry = readdir(dir)) != NULL)
@@ -85,8 +84,7 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 			tmp[i] = set_tmp(entry->d_name);
 			i++;
 		}
-		tmp[i] = ft_strnew(5);
-		tmp[i] = ft_strcpy(tmp[i], "end\n");
+		tmp[i] = set_end();
 	}
 	else
 	{
@@ -96,10 +94,8 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 				tmp[i] = set_tmp(entry->d_name);
 			i++;
 		}
-		tmp[i] = ft_strnew(5);
-		tmp[i] = ft_strcpy(tmp[i], "end\n");
+		tmp[i] = set_end();
 	}
-
 	print_tmp(tmp);
 	ft_putendl("");
 	return (0);
@@ -107,8 +103,13 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 
 int exec_flags_files(ff flags, DIR *dir)
 {
-	(void)dir;
-	(void)flags;
-	ft_putendl("This works");
+	int i;
+
+	i = 0;
+	while(ft_strcmp(flags.files[i], "end\n") != 0)
+	{
+		exec_flags(flags, dir, flags.files[i]);
+		i++;
+	}
 	return (0);
 }

@@ -90,8 +90,6 @@ ff flag_init(ff flags, char **av)
 		i++;
 	}
 	if(flags.files[0] != NULL)
-		flags = set_file(flags, j, "end\n");
-	else
-		flags = set_file(flags, 0, "end\n");
+		flags.files[j] = set_end();
 	return (flags);
 }

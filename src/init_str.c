@@ -9,6 +9,7 @@ ff init_str(ff flags)
         flags.t = 0;
         flags.ll = 0;
 	flags.er = 0;
-	flags.files[0] = ft_strnew(0);
+	flags.files[0] = ft_strnew(5);
+	flags.files[0] = ft_strcpy(flags.files[0], "end\n");
 	return(flags);
 }
