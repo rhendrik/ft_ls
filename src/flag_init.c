@@ -89,7 +89,6 @@ ff flag_init(ff flags, char **av)
 		}
 		i++;
 	}
-	if(flags.files[0] != NULL)
-		flags.files[j] = set_end();
+	flags.files[j] = set_end();
 	return (flags);
 }

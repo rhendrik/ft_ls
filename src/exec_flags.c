@@ -20,7 +20,7 @@ int print_tmp(char **tmp)
 	j = 0;
 	lc = 'a';
 	uc = 'A';
-	while(ft_strcmp(tmp[i], "end\n") != 0)
+	while((ft_strcmp(tmp[i], "end\n") != 0) && tmp[i] != NULL)
 	{
 		if(ft_strcmp(tmp[i], ".") == 0) 
 			put_spc(tmp[i]);
@@ -72,26 +72,36 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 	char **tmp;
 	int i;
 	struct dirent *entry;
+	int j;
 
 	tmp = (char**)malloc(1024 * sizeof(char));
 	i = 0;
+	j = 0;
 	if((dir = opendir(dname)) == NULL)
-		return (-1);
+		if(is_file(dname) == 1)
+		{
+			ft_putendl(dname);
+			return (0);
+		}
 	if(flags.a == 1)
 	{
 		while((entry = readdir(dir)) != NULL)
 		{
-			tmp[i] = set_tmp(entry->d_name);
-			i++;
+			tmp[j] = set_tmp(entry->d_name);
+			j++;
 		}
-		tmp[i] = set_end();
+		tmp[j] = set_end();
+		j = 0;
 	}
 	else
 	{
 		while((entry = readdir(dir)) != NULL)
 		{
 			if(entry->d_name[0] != '.')
-				tmp[i] = set_tmp(entry->d_name);
+			{
+				tmp[j] = set_tmp(entry->d_name);
+				j++;
+			}
 			i++;
 		}
 		tmp[i] = set_end();

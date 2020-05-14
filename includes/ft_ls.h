@@ -22,6 +22,7 @@ typedef struct flags {
 	int ll;
 	int er;
 	char **files;
+	int filenum;
 } ff;
 
 int b_print(DIR *dir);
