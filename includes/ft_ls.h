@@ -26,7 +26,7 @@ typedef struct flags {
 } ff;
 
 int b_print(DIR *dir);
-ff flag_init(ff flags, char **av);
+ff flag_init(ff flags, char **av, int ac);
 ff init_str(ff flags);
 int acc_err(char *avi);
 int recur(ff flags, char *dir);
@@ -35,6 +35,9 @@ int exec_flags(ff flags, DIR *dir, char *dname);
 int is_file(char *path);
 void put_spc(char *str);
 int exec_flags_files(ff flags, DIR *dir);
-char *set_end();
+ff set_end(ff flags, int pos);
+int print_tmp(char **tmp);
+int print_tmp_l(char**tmp);
+void print_l(char *name);
 
 # endif

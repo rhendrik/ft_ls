@@ -10,7 +10,7 @@ ff init_str(ff flags)
         flags.t = 0;
         flags.ll = 0;
 	flags.er = 0;
-	flags.files[0] = set_end("end\n");
+	flags = set_end(flags, 0);
 	flags.filenum = 0;
 	return(flags);
 }

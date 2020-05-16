@@ -18,8 +18,11 @@ int print_tmp(char **tmp)
 
 	i = 0;
 	j = 0;
-	lc = 'a';
-	uc = 'A';
+	lc = 'a'; /* lowercase checker */
+	uc = 'A'; /* uppercase checker */
+	/*******************************/
+	/* Check for current directory */
+	/*******************************/
 	while((ft_strcmp(tmp[i], "end\n") != 0) && tmp[i] != NULL)
 	{
 		if(ft_strcmp(tmp[i], ".") == 0) 
@@ -27,6 +30,9 @@ int print_tmp(char **tmp)
 		i++;
 	}
 	i = 0;
+	/*****************************/
+	/* heck for parent directory */
+	/*****************************/
 	while(ft_strcmp(tmp[i], "end\n") != 0)
 	{
 		if(ft_strcmp(tmp[i],  "..") == 0)
@@ -34,6 +40,9 @@ int print_tmp(char **tmp)
 		i++;
 	}
 	i = 0;
+	/****************************************/
+	/* CHeck lowercase && uppercase letters */
+	/****************************************/
 	while(uc <= 'Z' && lc <= 'z')
 	{
 		while(ft_strcmp(tmp[i], "end\n") != 0)
@@ -48,11 +57,11 @@ int print_tmp(char **tmp)
 		}
 		i = 0;
 		j = 0;
-		while(ft_strcmp(tmp[i], "end\n") == 0)
+		while(ft_strcmp(tmp[i], "end\n") != 0)
 		{
 			if(tmp[i][j] == '.')
 				j++;
-			if(tmp[i][j] == lc && ft_strcmp(tmp[i], "end\n") != 0)
+			if(tmp[i][j] == lc)
 			{
 				put_spc(tmp[i]);
 			}
@@ -77,12 +86,19 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 	tmp = (char**)malloc(1024 * sizeof(char));
 	i = 0;
 	j = 0;
+	/**********************************************/
+	/*This is where it prints for individual files*/
+	/**********************************************/
 	if((dir = opendir(dname)) == NULL)
 		if(is_file(dname) == 1)
 		{
 			ft_putendl(dname);
 			return (0);
 		}
+	/***************************************************/
+	/*This is where we set the tmp 2d array with dir's */
+	/*contents                                         */
+	/***************************************************/
 	if(flags.a == 1)
 	{
 		while((entry = readdir(dir)) != NULL)
@@ -90,7 +106,7 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 			tmp[j] = set_tmp(entry->d_name);
 			j++;
 		}
-		tmp[j] = set_end();
+		tmp[j] = set_tmp("end\n");
 		j = 0;
 	}
 	else
@@ -104,9 +120,15 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 			}
 			i++;
 		}
-		tmp[i] = set_end();
+		tmp[j] = set_tmp("end\n");
 	}
-	print_tmp(tmp);
+	/*****************/
+	/* '-l' printing */
+	/*****************/
+	if(flags.l == 1)
+		print_tmp_l(tmp);
+	else
+		print_tmp(tmp);
 	ft_putendl("");
 	return (0);
 }
