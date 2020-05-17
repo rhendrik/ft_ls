@@ -19,31 +19,29 @@ ff check_flags(ff flags, char *flag)
 		if(flag[i] == 'a')
 		{
 			flags.a = 1;
-			i++;
 		}
 		else if(flag[i] == 'l')
 		{
 			flags.l = 1;
-			i++;
 		}
 		else if(flag[i] == 'r')
 		{
 			flags.lr = 1;
-			i++;
 		}
 		else if(flag[i] == 'R')
 		{
 			flags.ur = 1;
-			i++;
 		}
 		else if(flag[i] == 't')
 		{
 			flags.t = 1;
-			i++;
 		}
 		else
+		{
 			flags.er = 1;
-		return(flags);
+			return(flags);
+		}
+		i++;
 	}
 	return(flags);
 }

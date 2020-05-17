@@ -77,7 +77,7 @@ int print_l(char *name)
 	}
 
 	/* print */
-	ft_putendl(tmp);
+	ft_putstr(tmp);
 	return(1);
 }
 

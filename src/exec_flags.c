@@ -141,29 +141,24 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 	/*This is where we set the tmp 2d array with dir's */
 	/*contents                                         */
 	/***************************************************/
-	if(flags.a == 1)
+	while((entry = readdir(dir)) != NULL)
 	{
-		while((entry = readdir(dir)) != NULL)
-		{
-			tmp[j] = set_tmp(entry->d_name);
-			j++;
-		}
-		tmp[j] = set_tmp("end\n");
-		j = 0;
-	}
-	else
-	{
-		while((entry = readdir(dir)) != NULL)
+		if(flags.a != 1)
 		{
 			if(entry->d_name[0] != '.')
 			{
 				tmp[j] = set_tmp(entry->d_name);
 				j++;
 			}
-			i++;
 		}
-		tmp[j] = set_tmp("end\n");
+		else
+		{
+			tmp[j] = set_tmp(entry->d_name);
+			j++;
+		}
+		i++;
 	}
+	tmp[j] = set_tmp("end\n");
 	print_tmp(tmp, flags);
 	if(flags.l != 1)
 		ft_putendl("");
@@ -173,11 +168,19 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 int exec_flags_files(ff flags, DIR *dir)
 {
 	int i;
+	struct stat path_stat;
 
 	i = 0;
 	while(ft_strcmp(flags.files[i], "end\n") != 0)
 	{
+		stat(flags.files[i], &path_stat);
+		if(S_ISDIR(path_stat.st_mode))
+		{
+			ft_putstr(flags.files[i]);
+			ft_putendl(":");
+		}
 		exec_flags(flags, dir, flags.files[i]);
+		ft_putchar('\n');
 		i++;
 	}
 	return (0);
