@@ -38,6 +38,9 @@ int exec_flags_files(ff flags, DIR *dir);
 ff set_end(ff flags, int pos);
 int print_tmp(char **tmp);
 int print_tmp_l(char**tmp);
-void print_l(char *name);
+int print_l(char *name);
+char *set_permissionstr(char *tmp, int mode);
+char *uid_to_name(uid_t uid);
+char *gid_to_name(gid_t gid);
 
 # endif
