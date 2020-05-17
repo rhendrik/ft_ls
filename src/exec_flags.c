@@ -9,7 +9,7 @@ char *set_tmp(char *name)
 	return (ret);
 }
 
-int print_tmp(char **tmp)
+int print_tmp(char **tmp, ff flags)
 {
 	int i;
 	int j;
@@ -20,13 +20,30 @@ int print_tmp(char **tmp)
 	j = 0;
 	lc = 'a'; /* lowercase checker */
 	uc = 'A'; /* uppercase checker */
+	/* if -l print totak */
+	if(flags.l == 1)
+	{
+		i = count_res(tmp);
+		ft_putstr("total ");
+		ft_putendl(ft_itoa(count_res(tmp)));
+	}
 	/*******************************/
 	/* Check for current directory */
 	/*******************************/
 	while((ft_strcmp(tmp[i], "end\n") != 0) && tmp[i] != NULL)
 	{
 		if(ft_strcmp(tmp[i], ".") == 0) 
-			put_spc(tmp[i]);
+		{
+			if(flags.l == 1)
+			{
+				print_l(tmp[i]);
+				ft_putchar('\n');
+			}
+			else
+			{
+				put_spc(tmp[i]);
+			}
+		}
 		i++;
 	}
 	i = 0;
@@ -36,7 +53,15 @@ int print_tmp(char **tmp)
 	while(ft_strcmp(tmp[i], "end\n") != 0)
 	{
 		if(ft_strcmp(tmp[i],  "..") == 0)
-			put_spc(tmp[i]);
+		{
+			if(flags.l == 1)
+			{
+				print_l(tmp[i]);
+				ft_putchar('\n');
+			}
+			else
+				put_spc(tmp[i]);
+		}
 		i++;
 	}
 	i = 0;
@@ -51,7 +76,13 @@ int print_tmp(char **tmp)
 				j++;
 			if(tmp[i][j] == uc)
 			{
-				put_spc(tmp[i]);
+				if(flags.l == 1)
+				{
+					print_l(tmp[i]);
+					ft_putchar('\n');
+				}
+				else
+					put_spc(tmp[i]);
 			}
 			i++;
 		}
@@ -63,7 +94,13 @@ int print_tmp(char **tmp)
 				j++;
 			if(tmp[i][j] == lc)
 			{
-				put_spc(tmp[i]);
+				if(flags.l == 1)
+				{
+					print_l(tmp[i]);
+					ft_putchar('\n');
+				}
+				else
+					put_spc(tmp[i]);
 			}
 			i++;
 		}
@@ -93,6 +130,11 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 		if(is_file(dname) == 1)
 		{
 			ft_putendl(dname);
+			if(flags.l == 1)
+			{
+				print_l(dname);
+				ft_putchar('\n');
+			}
 			return (0);
 		}
 	/***************************************************/
@@ -122,14 +164,9 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 		}
 		tmp[j] = set_tmp("end\n");
 	}
-	/*****************/
-	/* '-l' printing */
-	/*****************/
-	if(flags.l == 1)
-		print_tmp_l(tmp);
-	else
-		print_tmp(tmp);
-	ft_putendl("");
+	print_tmp(tmp, flags);
+	if(flags.l != 1)
+		ft_putendl("");
 	return (0);
 }
 
