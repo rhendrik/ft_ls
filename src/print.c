@@ -23,14 +23,20 @@ char *set_permissionstr(char *tmp, int mode)
 	return(tmp);
 }
 
-int print_l(char *name)
+int print_l(char *name, char *dir)
 {
 	char *tmp;
 	struct stat statbuff;
 	char *time;
+	char *abs;
 
 	tmp = (char *)malloc((ft_strlen(name) + 1) * sizeof(char));
-	if(stat(name, &statbuff) == -1)
+	abs = ft-strnew(ft_strlen(name) + ft_strlen(dir) + 2);
+	abs = ft_strdup(abs, "./");
+	abs = ft_strcat(abs, dir);
+	abs = ft_strcat(abs, "/");
+	abs =ft_strcat(abs, name);
+	if(stat(abs, &statbuff) == -1)
 	{
 		perror("Stat error\n");
 		return(0);

@@ -9,7 +9,7 @@ char *set_tmp(char *name)
 	return (ret);
 }
 
-int print_tmp(char **tmp, ff flags)
+int print_tmp(char **tmp, ff flags, char *dir)
 {
 	int i;
 	int j;
@@ -37,7 +37,7 @@ int print_tmp(char **tmp, ff flags)
 		{
 			if(flags.l == 1)
 			{
-				print_l(tmp[i]);
+				print_l(tmp[i], dir);
 				ft_putchar('\n');
 			}
 			else
@@ -57,7 +57,7 @@ int print_tmp(char **tmp, ff flags)
 		{
 			if(flags.l == 1)
 			{
-				print_l(tmp[i]);
+				print_l(tmp[i], dir);
 				ft_putchar('\n');
 			}
 			else
@@ -79,7 +79,7 @@ int print_tmp(char **tmp, ff flags)
 			{
 				if(flags.l == 1)
 				{
-					print_l(tmp[i]);
+					print_l(tmp[i], dir);
 					ft_putchar('\n');
 				}
 				else
@@ -97,7 +97,7 @@ int print_tmp(char **tmp, ff flags)
 			{
 				if(flags.l == 1)
 				{
-					print_l(tmp[i]);
+					print_l(tmp[i], dir);
 					ft_putchar('\n');
 				}
 				else
@@ -133,7 +133,7 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 			ft_putendl(dname);
 			if(flags.l == 1)
 			{
-				print_l(dname);
+				print_l(dname, dir);
 				ft_putchar('\n');
 			}
 			return (0);
@@ -160,7 +160,7 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 		i++;
 	}
 	tmp[j] = set_tmp("end\n");
-	print_tmp(tmp, flags);
+	print_tmp(tmp, flags, dname);
 	if(flags.l != 1)
 		ft_putendl("");
 	return (0);
