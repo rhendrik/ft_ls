@@ -48,6 +48,7 @@ int print_l(char *name)
 {
 	char *tmp;
 	struct stat statbuff;
+	char *time;
 
 	tmp = (char *)malloc((ft_strlen(name) + 1) * sizeof(char));
 	if(stat(name, &statbuff) == -1)
@@ -86,12 +87,17 @@ int print_l(char *name)
 		tmp = ft_strcat(tmp, " ");
 
 		/* last modified */
+		time = ft_strnew(ft_strlen(ctime(&statbuff.st_mtime)));
+		time = ctime(&statbuff.st_mtime);
+		time[16] = '\0';
+		tmp = ft_strcat(tmp, time);
+/*		tmp = ft_strcat(tmp, " ");*/
 
 		/* filename */
 	}
 
 	/* print */
-	ft_putstr(tmp);
+	ft_putendl(tmp);
 	return(1);
 }
 
