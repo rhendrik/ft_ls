@@ -133,7 +133,7 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 			ft_putendl(dname);
 			if(flags.l == 1)
 			{
-				print_l(dname, dir);
+				print_l(dname, "");
 				ft_putchar('\n');
 			}
 			return (0);

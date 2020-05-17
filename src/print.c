@@ -31,8 +31,8 @@ int print_l(char *name, char *dir)
 	char *abs;
 
 	tmp = (char *)malloc((ft_strlen(name) + 1) * sizeof(char));
-	abs = ft-strnew(ft_strlen(name) + ft_strlen(dir) + 2);
-	abs = ft_strdup(abs, "./");
+	abs = ft_strnew(ft_strlen(name) + ft_strlen(dir) + 2);
+	abs = ft_strdup("./");
 	abs = ft_strcat(abs, dir);
 	abs = ft_strcat(abs, "/");
 	abs =ft_strcat(abs, name);
