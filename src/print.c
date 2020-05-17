@@ -6,18 +6,57 @@ int print_tmp_l(char **tmp)
 	int j;
 	char uc;
 	char lc;
-	(void)tmp;
-	(void)i;
-	(void)j;
-	(void)uc;
-	(void)lc;
 
+	i = 0;
+	j = 0;
+	uc = 'A';
+	lc = 'a';
+	ft_putstr("total ");
+	ft_putendl(ft_itoa(count_res(tmp)));
 	/* check for current directory */
+	while(ft_strcmp(tmp[i], "end\n") != 0)
+	{
+		if(ft_strcmp(tmp[i], "0") == 0)
+			print_l(tmp[i]);
+		i++;
+	}
+	i = 0;
 
 	/* check for parent directory */
+	while(ft_strcmp(tmp[i], "end\n") != 0)
+	{
+		if(ft_strcmp(tmp[i], ".") == 0)
+			print_l(tmp[i]);
+		i++;
+	}
+	i = 0;
 
 	/* check for upper & lowercase letters */
-	print_l("src");
+	while(uc <= 'Z' && lc <= 'z')
+	{
+		while(ft_strcmp(tmp[i], "end\n") != 0)
+		{
+			if(tmp[i][j] == '.')
+				j++;
+			if(tmp[i][j] == uc)
+				print_l(tmp[i]);
+			i++;
+		}
+		i = 0;
+		j = 0;
+		while(ft_strcmp(tmp[i], "end\n") != 0)
+		{
+			if(tmp[i][j] == '.')
+				j++;
+			if(tmp[i][j] == lc)
+				print_l(tmp[i]);
+			i++;
+		}
+		i = 0;
+		j = 0;
+		lc++;
+		uc++;
+	}
 	return (0);
 }
 
@@ -91,9 +130,10 @@ int print_l(char *name)
 		time = ctime(&statbuff.st_mtime);
 		time[16] = '\0';
 		tmp = ft_strcat(tmp, time);
-/*		tmp = ft_strcat(tmp, " ");*/
+		tmp = ft_strcat(tmp, " ");
 
 		/* filename */
+		tmp = ft_strcat(tmp, name);
 	}
 
 	/* print */

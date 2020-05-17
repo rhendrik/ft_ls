@@ -145,3 +145,13 @@ int exec_flags_files(ff flags, DIR *dir)
 	}
 	return (0);
 }
+
+int count_res(char **tmp)
+{
+	int i;
+
+	i = 0;
+	while(ft_strcmp(tmp[i], "end\n") != 0)
+		i++;
+	return (i);
+}

@@ -41,6 +41,7 @@ int print_tmp_l(char**tmp);
 int print_l(char *name);
 char *set_permissionstr(char *tmp, int mode);
 char *uid_to_name(uid_t uid);
+int count_res(char **tmp);
 char *gid_to_name(gid_t gid);
 
 # endif
