@@ -27,10 +27,11 @@ int print_tmp(char **tmp, ff flags)
 		ft_putstr("total ");
 		ft_putendl(ft_itoa(count_res(tmp)));
 	}
+	i = 0;
 	/*******************************/
 	/* Check for current directory */
 	/*******************************/
-	while((ft_strcmp(tmp[i], "end\n") != 0) && tmp[i] != NULL)
+	while(ft_strcmp(tmp[i], "end\n") != 0) 
 	{
 		if(ft_strcmp(tmp[i], ".") == 0) 
 		{
