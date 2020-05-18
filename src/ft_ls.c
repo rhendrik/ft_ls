@@ -3,8 +3,7 @@
 char *set_end()
 {
 	char *ret;
-	ret = ft_strnew(5);
-	ret = ft_strcpy(ret, "end\n");
+	ret = ft_strdup("end\n");
 	return (ret);
 }
 
@@ -18,8 +17,10 @@ int main(int ac, char **av)
 {
 	DIR *dir;
 	ff flags;
+	int i;
 
 
+	i = 0;
 	dir = opendir("/");
 	flags = init_str(flags);
 	flags = flag_init(flags, av, ac);
@@ -36,6 +37,7 @@ int main(int ac, char **av)
 		else
 			exec_flags_files(flags, dir);
 	}
+	free(flags.files[i]);
 	free(flags.files);
 	closedir(dir);
 	return(0);

@@ -2,10 +2,9 @@
 
 char *set_tmp(char *name)
 {
-	char *ret;
 
-	ret = ft_strnew(ft_strlen(name));
-	ft_strcpy(ret, name);
+	char *ret;
+	ret=ft_strdup(name);
 	return (ret);
 }
 
@@ -148,13 +147,13 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 		{
 			if(entry->d_name[0] != '.')
 			{
-				tmp[j] = set_tmp(entry->d_name);
+				tmp[j] = ft_strdup(entry->d_name);
 				j++;
 			}
 		}
 		else
 		{
-			tmp[j] = set_tmp(entry->d_name);
+			tmp[j] = ft_strdup(entry->d_name);
 			j++;
 		}
 		i++;
@@ -177,7 +176,16 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 		if(flags.l != 1)
 			ft_putchar('\n');
 	}
+	i = 0;
+	while(ft_strcmp(tmp[i], "end\n") != 0)
+		free(tmp[i++]);
 	free(tmp);
+	i = 0;
+	while(ft_strcmp(flags.files[i], "end\n") != 0)
+	{
+		free(flags.files[i]);
+		i++;
+	}
 	free(flags.files);
 	closedir(dir);
 	return (0);

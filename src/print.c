@@ -130,7 +130,7 @@ int print_l(char *name, char *dir)
 	i = 0;
 	tmp = (char *)malloc((ft_strlen(name) + 1) * sizeof(char));
 	abs = set_abs(name, dir);
-	if(stat(abs, &statbuff) == -1)
+	if(lstat(abs, &statbuff) == -1)
 	{
 		perror("Stat error\n");
 		return(0);
@@ -178,10 +178,18 @@ int print_l(char *name, char *dir)
 
 		/* filename */
 		tmp = ft_strcat(tmp, name);
+
+		if(S_ISLNK(statbuff.st_mode) != 0)
+		{
+			tmp = ft_strcat(tmp, " -> ");
+			tmp = ft_strcat(tmp, set_nlink(name));
+		}
 	}
 
 	/* print */
 	ft_putstr(tmp);
+	i = 0; 
+	free(tmp);
 	return(1);
 }
 
@@ -204,4 +212,18 @@ char *gid_to_name(gid_t gid)
 	else
 		return (grp_ptr->gr_name);
 
+}
+
+char *set_nlink(char *dir)
+{
+	char buf[1024];
+	char *abs;
+	ssize_t len;
+	char *ret;
+
+	abs = set_abs(dir, "");
+	if((len = readlink(abs, buf, sizeof(buf - 1)) != 1))
+		buf[len] = 0;
+	ret = ft_strdup(buf);
+	return (ret);
 }

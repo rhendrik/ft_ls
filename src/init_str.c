@@ -10,7 +10,7 @@ ff init_str(ff flags)
 	flags.t = 0;
 	flags.ll = 0;
 	flags.er = 0;
-	flags.files[0] = set_end();
+	flags.files[0] = ft_memset(flags.files, 0, 5);
 	return(flags);
 }
 
