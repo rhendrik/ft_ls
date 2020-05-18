@@ -25,6 +25,7 @@ int main(int ac, char **av)
 	flags = flag_init(flags, av, ac);
 	if(flags.er == 1)
 	{
+		free(flags.files);
 		closedir(dir);
 		return(0);
 	}

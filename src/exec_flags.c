@@ -4,9 +4,8 @@ char *set_tmp(char *name)
 {
 	char *ret;
 
-	ret = ft_strnew(ft_strlen(name) + 1);
-	ret = ft_strcpy(ret, name);
-	free(name);
+	ret = ft_strnew(ft_strlen(name));
+	ft_strcpy(ret, name);
 	return (ret);
 }
 
@@ -179,6 +178,7 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 			ft_putchar('\n');
 	}
 	free(tmp);
+	free(flags.files);
 	closedir(dir);
 	return (0);
 }

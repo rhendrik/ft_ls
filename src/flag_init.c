@@ -95,6 +95,5 @@ ff flag_init(ff flags, char **av, int ac)
 		i++;
 	}
 	flags.files[j] = set_end(flags, j);
-	closedir(dummy);
 	return (flags);
 }

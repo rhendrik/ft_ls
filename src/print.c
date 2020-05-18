@@ -21,9 +21,13 @@ int print_tmp_rev(char **tmp, ff flags, char *dir)
 				{
 					print_l(tmp[i], dir);
 					ft_putchar('\n');
+					free(tmp[i]);
 				}
 				else
+				{
+					free(tmp[i]);
 					put_spc(tmp[i]);
+				}
 			}
 			if(tmp[i][j] == '.')
 			{
@@ -121,7 +125,9 @@ int print_l(char *name, char *dir)
 	struct stat statbuff;
 	char *time;
 	char *abs;
+	int i;
 
+	i = 0;
 	tmp = (char *)malloc((ft_strlen(name) + 1) * sizeof(char));
 	abs = set_abs(name, dir);
 	if(stat(abs, &statbuff) == -1)
@@ -157,8 +163,12 @@ int print_l(char *name, char *dir)
 
 		/* bytesize */ 
 		tmp = ft_strcat(tmp, ft_itoa(statbuff.st_size));
-		tmp = ft_strcat(tmp, " ");
-
+		while(i < (8 - ((int)ft_strlen(ft_itoa(statbuff.st_size)))))
+		{
+			tmp = ft_strcat(tmp, " ");
+			i++;
+		}
+		i = 0;
 		/* last modified */
 		time = ft_strnew(ft_strlen(ctime(&statbuff.st_mtime)));
 		time = ctime(&statbuff.st_mtime);
