@@ -19,13 +19,6 @@ int print_tmp(char **tmp, ff flags, char *dir)
 	j = 0;
 	lc = 'a'; /* lowercase checker */
 	uc = 'A'; /* uppercase checker */
-	/* if -l print totak */
-	if(flags.l == 1)
-	{
-		i = count_res(tmp);
-		ft_putstr("total ");
-		ft_putendl(ft_itoa(count_res(tmp)));
-	}
 	i = 0;
 	/*******************************/
 	/* Check for current directory */
