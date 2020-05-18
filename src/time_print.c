@@ -14,7 +14,7 @@ int print_time(time_t *tab, char **tmp, ff flags, char *dir)
 	while(i < len)
 	{
 		j = 0;
-		abs = set_abs(tmp[i], dir);
+		abs = set_abs(tmp[j], dir);
 		while(ft_strcmp(tmp[j], "end\n") != 0)
 		{
 			if(stat(abs, &statbuff) == -1)
