@@ -2,7 +2,7 @@
 
 ff init_str(ff flags)
 {
-	flags.files = (char **)malloc(1024 * sizeof(char **));
+	flags.files = (char **)malloc(50 * sizeof(char *));
 	flags.l = 0;
 	flags.a = 0;
 	flags.lr = 0;
@@ -10,23 +10,18 @@ ff init_str(ff flags)
 	flags.t = 0;
 	flags.ll = 0;
 	flags.er = 0;
-	flags = set_end(flags, 0);
-	flags.filenum = 0;
+	flags.files[0] = set_end();
 	return(flags);
 }
 
 int print_tmp_time(char **tmp, ff flags, char *dir)
 {
 	time_t *tab;
-	int i;
 	int len;
 
-	i = 0;
 	len = count_res(tmp);
 	tab = init_tab(tmp, dir, len);
 	print_time(tab, tmp, flags, dir);
-	(void)i;
-	(void)flags;
 	return (0);
 }
 
@@ -107,6 +102,20 @@ time_t *sort_tab(time_t *tab, int len)
 		}
 		i++;
 		j++;
+	}
+	i = 0;
+	j =  len;
+	tmp = 0;
+	while(j > i)
+	{
+		if(tab[j] > tab[i])
+		{
+			tmp = tab[j];
+			tab[j] = tab[i];
+			tab[i] = tmp;
+		}
+		i++;
+		j--;
 	}
 	return (tab);
 }

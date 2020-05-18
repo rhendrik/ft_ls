@@ -1,10 +1,11 @@
 #include "../includes/ft_ls.h"
 
-ff set_end(ff flags, int pos)
+char *set_end()
 {
-	flags.files[pos] = ft_strnew(5);
-	flags.files[pos] = ft_strcpy(flags.files[pos], "end\n");
-	return (flags);
+	char *ret;
+	ret = ft_strnew(5);
+	ret = ft_strcpy(ret, "end\n");
+	return (ret);
 }
 
 void put_spc(char *str)
@@ -34,6 +35,7 @@ int main(int ac, char **av)
 		else
 			exec_flags_files(flags, dir);
 	}
+	free(flags.files);
 	closedir(dir);
 	return(0);
 }

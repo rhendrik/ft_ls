@@ -35,7 +35,7 @@ int exec_flags(ff flags, DIR *dir, char *dname);
 int is_file(char *path);
 void put_spc(char *str);
 int exec_flags_files(ff flags, DIR *dir);
-ff set_end(ff flags, int pos);
+char *set_end();
 int print_tmp(char **tmp, ff flags, char *dir);
 int print_tmp_l(char**tmp);
 int print_l(char *name, char *dir);

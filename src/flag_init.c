@@ -65,7 +65,7 @@ ff flag_init(ff flags, char **av, int ac)
 	i = 1;
 	if(ac == 1)
 	{
-		flags = set_end(flags, 0);
+		flags.files[0] = set_end(flags, 0);
 		return (flags);
 	}
 	while(av[i])
@@ -94,6 +94,7 @@ ff flag_init(ff flags, char **av, int ac)
 		}
 		i++;
 	}
-	flags = set_end(flags, j);
+	flags.files[j] = set_end(flags, j);
+	closedir(dummy);
 	return (flags);
 }

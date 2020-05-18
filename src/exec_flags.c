@@ -161,19 +161,23 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 	}
 	tmp[j] = set_tmp("end\n");
 	if(flags.t == 1)
+	{
 		print_tmp_time(tmp, flags, dname);
+		ft_putchar('\n');
+	}
 	else if(flags.lr == 0)
 	{
 		print_tmp(tmp, flags, dname);
 		if(flags.l != 1)
 			ft_putendl("");
 	}
-	else
+	else 
 	{
 		print_tmp_rev(tmp, flags, dname);
 		if(flags.l != 1)
 			ft_putchar('\n');
 	}
+	free(tmp);
 	return (0);
 }
 
