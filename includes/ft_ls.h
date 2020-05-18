@@ -45,6 +45,7 @@ int count_res(char **tmp);
 char *gid_to_name(gid_t gid);
 int print_tmp_rev(char **tmp, ff flags, char *dir);
 int print_tmp_time(char **tmp, ff flags, char *dir);
-
+char *set_abs(char *name, char *dir);
+time_t *init_tab(char **tmp, char *dir, int len);
 
 # endif

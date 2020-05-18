@@ -160,7 +160,9 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 		i++;
 	}
 	tmp[j] = set_tmp("end\n");
-	if(flags.lr == 0)
+	if(flags.t == 1)
+		print_tmp_time(tmp, flags, dname);
+	else if(flags.lr == 0)
 	{
 		print_tmp(tmp, flags, dname);
 		if(flags.l != 1)
