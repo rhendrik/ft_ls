@@ -10,7 +10,7 @@ char *set_end()
 void put_spc(char *str)
 {
 	ft_putstr(str);
-	ft_putchar(' ');
+	ft_putstr("  ");
 }
 
 int main(int ac, char **av)
