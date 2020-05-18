@@ -177,16 +177,8 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 			ft_putchar('\n');
 	}
 	i = 0;
-	while(ft_strcmp(tmp[i], "end\n") != 0)
-		free(tmp[i++]);
 	free(tmp);
 	i = 0;
-	while(ft_strcmp(flags.files[i], "end\n") != 0)
-	{
-		free(flags.files[i]);
-		i++;
-	}
-	free(flags.files);
 	closedir(dir);
 	return (0);
 }
