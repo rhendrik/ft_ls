@@ -222,8 +222,8 @@ char *set_nlink(char *dir)
 	char *ret;
 
 	abs = set_abs(dir, "");
-	if((len = readlink(abs, buf, sizeof(buf - 1)) != 1))
-		buf[len] = 0;
+	if((len = readlink(abs, buf, 20) != 1))
+		buf[20] = 0;
 	ret = ft_strdup(buf);
 	return (ret);
 }
