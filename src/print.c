@@ -1,5 +1,97 @@
 #include "../includes/ft_ls.h"
 
+int print_tmp_rev(char **tmp, ff flags, char *dir)
+{
+	int i;
+	int j;
+	char lc;
+	char uc;
+
+	i = 0;
+	j = 0;
+	lc = 'z';
+	uc = 'Z';
+	while(lc >= 'a' && uc >= 'A')
+	{
+		while(ft_strcmp(tmp[i], "end\n") != 0)
+		{
+			if(tmp[i][j] == uc)
+			{
+				if(flags.l == 1)
+				{
+					print_l(tmp[i], dir);
+					ft_putchar('\n');
+				}
+				else
+					put_spc(tmp[i]);
+			}
+			if(tmp[i][j] == '.')
+			{
+				j++;
+				continue;
+			}
+			i++;
+		}
+		i = 0;
+		j = 0;
+		while(ft_strcmp(tmp[i], "end\n") != 0)
+		{
+			if(tmp[i][j] == lc)
+			{
+				if(flags.l == 1)
+				{
+					print_l(tmp[i], dir);
+					ft_putchar('\n');
+				}
+				else
+					put_spc(tmp[i]);
+			}
+			if(tmp[i][j] == '.')
+			{
+				j++;
+				continue;
+			}
+			i++;
+		}
+		i = 0;
+		j = 0;
+		uc--;
+		lc--;
+	}
+	i = 0;
+	j = 0;
+	while(ft_strcmp(tmp[i], "end\n") != 0)
+	{
+		if(ft_strcmp(tmp[i], "..") == 0)
+		{
+			if(flags.l == 1)
+			{
+				print_l("..", dir);
+				ft_putchar('\n');
+			}
+			else
+				put_spc(tmp[i]);
+		}
+		i++;
+	}
+	i = 0;	
+	while(ft_strcmp(tmp[i], "end\n") != 0)
+	{
+		if(ft_strcmp(tmp[i], ".") == 0)
+		{
+			if(flags.l == 1)
+			{
+				print_l(".", dir);
+				ft_putchar('\n');
+			}
+			else
+				put_spc(tmp[i]);
+		}
+		i++;
+	}
+	return (0);
+}
+
 char *set_permissionstr(char *tmp, int mode)
 {
 	if( mode & S_IRUSR )

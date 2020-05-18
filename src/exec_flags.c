@@ -130,12 +130,12 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 	if((dir = opendir(dname)) == NULL)
 		if(is_file(dname) == 1)
 		{
-			ft_putendl(dname);
 			if(flags.l == 1)
 			{
 				print_l(dname, "");
-				ft_putchar('\n');
 			}
+			else
+				ft_putstr(dname);
 			return (0);
 		}
 	/***************************************************/
@@ -160,9 +160,18 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 		i++;
 	}
 	tmp[j] = set_tmp("end\n");
-	print_tmp(tmp, flags, dname);
-	if(flags.l != 1)
-		ft_putendl("");
+	if(flags.lr == 0)
+	{
+		print_tmp(tmp, flags, dname);
+		if(flags.l != 1)
+			ft_putendl("");
+	}
+	else
+	{
+		print_tmp_rev(tmp, flags, dname);
+		if(flags.l != 1)
+			ft_putchar('\n');
+	}
 	return (0);
 }
 
