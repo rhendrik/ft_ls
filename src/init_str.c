@@ -14,3 +14,12 @@ ff init_str(ff flags)
 	flags.filenum = 0;
 	return(flags);
 }
+
+int print_tmp_time(char **tmp, ff flags, char *dir)
+{
+	(void)tmp;
+	(void)flags;
+	(void)dir;
+	ft_putendl("this works");
+	return (0);
+}

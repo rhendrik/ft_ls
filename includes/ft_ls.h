@@ -44,5 +44,7 @@ char *uid_to_name(uid_t uid);
 int count_res(char **tmp);
 char *gid_to_name(gid_t gid);
 int print_tmp_rev(char **tmp, ff flags, char *dir);
+int print_tmp_time(char **tmp, ff flags, char *dir);
+
 
 # endif
