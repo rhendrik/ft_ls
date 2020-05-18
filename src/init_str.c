@@ -18,13 +18,15 @@ ff init_str(ff flags)
 int print_tmp_time(char **tmp, ff flags, char *dir)
 {
 	time_t *tab;
+	int i;
 	int len;
 
+	i = 0;
 	len = count_res(tmp);
-	tab = (time_t *)malloc((len + 1) * sizeof(time_t));
-	init_tab(tmp, dir, len);
+	tab = init_tab(tmp, dir, len);
+	print_time(tab, tmp, flags, dir);
+	(void)i;
 	(void)flags;
-	(void)tab;
 	return (0);
 }
 
@@ -57,7 +59,7 @@ time_t *init_tab(char **tmp, char *dir, int len)
 		i++;
 	}
 	ret = sort_tab(ret, len);
-	return(NULL);
+	return(ret);
 }
 
 char *set_abs(char *name, char *dir)
@@ -76,10 +78,35 @@ time_t *sort_tab(time_t *tab, int len)
 {
 	int i;
 	int j;
+	int tmp;
 
 	i = 0;
-	j = len;
-	ft_putendl(ft_itoa(tab[i]));
-	(void) j;
+	j =  + 1;
+	tmp = 0;
+	while(j < len)
+	{
+		if(tab[j] > tab[i])
+		{
+			tmp = tab[j];
+			tab[j] = tab[i];
+			tab[i] = tmp;
+		}
+		i++;
+		j++;
+	}
+	i = 0;
+	j =  + 1;
+	tmp = 0;
+	while(j < len)
+	{
+		if(tab[j] > tab[i])
+		{
+			tmp = tab[j];
+			tab[j] = tab[i];
+			tab[i] = tmp;
+		}
+		i++;
+		j++;
+	}
 	return (tab);
 }
