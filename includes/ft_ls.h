@@ -47,5 +47,6 @@ int print_tmp_rev(char **tmp, ff flags, char *dir);
 int print_tmp_time(char **tmp, ff flags, char *dir);
 char *set_abs(char *name, char *dir);
 time_t *init_tab(char **tmp, char *dir, int len);
+time_t *sort_tab(time_t *tab, int len);
 
 # endif

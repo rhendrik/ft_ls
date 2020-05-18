@@ -56,8 +56,7 @@ time_t *init_tab(char **tmp, char *dir, int len)
 		}
 		i++;
 	}
-	(void) statbuff;
-	(void)len;
+	ret = sort_tab(ret, len);
 	return(NULL);
 }
 
@@ -71,4 +70,16 @@ char *set_abs(char *name, char *dir)
 	abs = ft_strcat(abs, "/");
 	abs =ft_strcat(abs, name);
 	return (abs);
+}
+
+time_t *sort_tab(time_t *tab, int len)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = len;
+	ft_putendl(ft_itoa(tab[i]));
+	(void) j;
+	return (tab);
 }
