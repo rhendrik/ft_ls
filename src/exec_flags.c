@@ -167,18 +167,16 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 	else if(flags.lr == 0)
 	{
 		print_tmp(tmp, flags, dname);
-		if(flags.l != 1)
-			ft_putendl("");
 	}
 	else 
 	{
 		print_tmp_rev(tmp, flags, dname);
-		if(flags.l != 1)
-			ft_putchar('\n');
 	}
 	i = 0;
 	free(tmp);
 	i = 0;
+	if(flags.l != 1 && flags.files[1] != 0)
+		ft_putendl("");
 	closedir(dir);
 	return (0);
 }
@@ -192,13 +190,14 @@ int exec_flags_files(ff flags, DIR *dir)
 	while(ft_strcmp(flags.files[i], "end\n") != 0)
 	{
 		stat(flags.files[i], &path_stat);
-		if(S_ISDIR(path_stat.st_mode))
+		if(S_ISDIR(path_stat.st_mode) && ft_strcmp(flags.files[1], "end\n")!=0)
 		{
 			ft_putstr(flags.files[i]);
 			ft_putendl(":");
 		}
 		exec_flags(flags, dir, flags.files[i]);
-		ft_putchar('\n');
+		if(ft_strcmp(flags.files[1], "end\n") != 0)
+			ft_putchar('\n');
 		i++;
 	}
 	return (0);
