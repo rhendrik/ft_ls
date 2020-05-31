@@ -173,7 +173,7 @@ int print_l(char *name, char *dir)
 		time = ft_strnew(ft_strlen(ctime(&statbuff.st_mtime)));
 		time = ctime(&statbuff.st_mtime);
 		time[16] = '\0';
-		tmp = ft_strcat(tmp, time);
+		tmp = ft_strcat(tmp, &time[4]);
 		tmp = ft_strcat(tmp, " ");
 
 		/* filename */

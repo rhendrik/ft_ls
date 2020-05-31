@@ -1,10 +1,9 @@
 #include "../includes/ft_ls.h"
 
-char *set_end()
+char *set_end(char *str)
 {
-	char *ret;
-	ret = ft_strdup("end\n");
-	return (ret);
+	str = ft_strcpy(str, "end\n");
+	return (str);
 }
 
 void put_spc(char *str)
@@ -17,10 +16,8 @@ int main(int ac, char **av)
 {
 	DIR *dir;
 	ff flags;
-	int i;
 
 
-	i = 0;
 	dir = opendir("/");
 	flags = init_str(flags);
 	flags = flag_init(flags, av, ac);
@@ -37,7 +34,6 @@ int main(int ac, char **av)
 		else
 			exec_flags_files(flags, dir);
 	}
-	free(flags.files[i]);
 	free(flags.files);
 	closedir(dir);
 	return(0);

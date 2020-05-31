@@ -127,7 +127,12 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 				print_l(dname, "");
 			}
 			else
+			{
 				ft_putstr(dname);
+																																
+			}
+			closedir(dir);
+			free(tmp);
 			return (0);
 		}
 	/***************************************************/
@@ -140,7 +145,8 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 		{
 			if(entry->d_name[0] != '.')
 			{
-				tmp[j] = ft_strdup(entry->d_name);
+				tmp[j] = ft_strnew(ft_strlen(entry->d_name));
+				tmp[j] = ft_strcpy(tmp[j], entry->d_name);
 				j++;
 			}
 		}
@@ -151,7 +157,8 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 		}
 		i++;
 	}
-	tmp[j] = set_tmp("end\n");
+	tmp[j] = ft_strnew(ft_strlen("end\n"));
+	tmp[j] = ft_strcpy(tmp[j], "end\n");
 	if(flags.t == 1)
 	{
 		print_tmp_time(tmp, flags, dname);

@@ -65,7 +65,8 @@ ff flag_init(ff flags, char **av, int ac)
 	i = 1;
 	if(ac == 1)
 	{
-		flags.files[0] = set_end(flags, 0);
+		flags.files[0] = ft_strnew(ft_strlen("end\n"));
+		flags.files[0] = ft_strcpy(flags.files[0],"end\n");
 		return (flags);
 	}
 	while(av[i])
@@ -94,6 +95,7 @@ ff flag_init(ff flags, char **av, int ac)
 		}
 		i++;
 	}
-	flags.files[j] = set_end(flags, j);
+	flags.files[j] = ft_strnew(ft_strlen("end\n") +1);
+	flags.files[j] = ft_strcpy(flags.files[j], "end\n");
 	return (flags);
 }
