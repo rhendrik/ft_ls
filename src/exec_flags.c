@@ -12,14 +12,15 @@ int print_tmp(char **tmp, ff flags, char *dir)
 {
 	int i;
 	int j;
+	int line;
 	char lc;
 	char uc;
 
 	i = 0;
 	j = 0;
+	line = 0;
 	lc = 'a'; /* lowercase checker */
 	uc = 'A'; /* uppercase checker */
-	i = 0;
 	/*******************************/
 	/* Check for current directory */
 	/*******************************/
@@ -36,10 +37,14 @@ int print_tmp(char **tmp, ff flags, char *dir)
 				ft_putendl(tmp[i]);
 			else
 			{
-				put_spc(tmp[i]);
+				if(line % 13 == 0)
+					ft_putendl(tmp[i]);
+				else
+					put_spc(tmp[i]);
 			}
 		}
 		i++;
+		line++;
 	}
 	i = 0;
 	/*****************************/
@@ -57,9 +62,15 @@ int print_tmp(char **tmp, ff flags, char *dir)
 			if(flags.one ==1)
 				ft_putendl(tmp[i]);
 			else
-				put_spc(tmp[i]);
+			{
+				if(line % 13 == 0)
+					ft_putendl(tmp[i]);
+				else
+					put_spc(tmp[i]);
+			}
 		}
 		i++;
+		line++;	
 	}
 	i = 0;
 	/****************************************/
@@ -80,11 +91,16 @@ int print_tmp(char **tmp, ff flags, char *dir)
 				}
 				if(flags.one ==1)
 					ft_putendl(tmp[i]);
-
 				else
-					put_spc(tmp[i]);
+				{
+					if(line % 13 == 0)
+						ft_putendl(tmp[i]);
+					else
+						put_spc(tmp[i]);
+				}
 			}
 			i++;
+			line++;
 		}
 		i = 0;
 		j = 0;
@@ -102,9 +118,15 @@ int print_tmp(char **tmp, ff flags, char *dir)
 				if(flags.one ==1)
 					ft_putendl(tmp[i]);
 				else
-					put_spc(tmp[i]);
+				{
+					if(line % 13 == 0)
+						ft_putendl(tmp[i]);
+					else
+						put_spc(tmp[i]);
+				}
 			}
 			i++;
+			line++;		
 		}
 		j = 0;
 		i = 0;

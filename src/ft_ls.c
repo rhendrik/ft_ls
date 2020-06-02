@@ -8,8 +8,15 @@ char *set_end(char *str)
 
 void put_spc(char *str)
 {
+	int i;
+
+	i = 16 - ft_strlen(str);
 	ft_putstr(str);
-	ft_putstr("  ");
+	while(i > 0)
+	{
+		ft_putstr(" ");
+		i--;
+	}
 }
 
 int main(int ac, char **av)
