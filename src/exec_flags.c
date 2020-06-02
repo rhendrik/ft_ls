@@ -131,6 +131,7 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 				ft_putstr(dname);
 																																
 			}
+			ft_putendl("");
 			closedir(dir);
 			free(tmp);
 			return (0);
@@ -175,7 +176,7 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 	i = 0;
 	free(tmp);
 	i = 0;
-	if(flags.l != 1 && flags.files[1] != 0)
+	if(flags.l != 1)
 		ft_putendl("");
 	closedir(dir);
 	return (0);
@@ -196,7 +197,7 @@ int exec_flags_files(ff flags, DIR *dir)
 			ft_putendl(":");
 		}
 		exec_flags(flags, dir, flags.files[i]);
-		if(ft_strcmp(flags.files[1], "end\n") != 0)
+		if(ft_strcmp(flags.files[1], "end\n") != 0 && (ft_strcmp(flags.files[i+1], "end\n") != 0))
 			ft_putchar('\n');
 		i++;
 	}

@@ -28,11 +28,11 @@ int print_time(time_t *tab, char **tmp, ff flags, char *dir)
 				{
 					if(flags.l == 1)
 					{
-						print_l(tmp[j], dir);
+						print_l(tmp[i], dir);
 						ft_putchar('\n');
 					}
 					else
-						put_spc(tmp[j]);
+						put_spc(tmp[i]);
 				}
 			}
 			j++;

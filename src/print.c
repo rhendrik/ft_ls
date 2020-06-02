@@ -21,11 +21,9 @@ int print_tmp_rev(char **tmp, ff flags, char *dir)
 				{
 					print_l(tmp[i], dir);
 					ft_putchar('\n');
-					free(tmp[i]);
 				}
 				else
 				{
-					free(tmp[i]);
 					put_spc(tmp[i]);
 				}
 			}
