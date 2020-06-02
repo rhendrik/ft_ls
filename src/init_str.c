@@ -49,7 +49,7 @@ time_t *init_tab(char **tmp, char *dir, int len)
 		}
 		else
 		{
-			ret[i] = statbuff.st_mtime;
+			ret[i] = (int)statbuff.st_mtime;
 		}
 		i++;
 	}
@@ -78,7 +78,7 @@ time_t *sort_tab(time_t *tab, int len)
 	i = 0;
 	j =  + 1;
 	tmp = 0;
-	while(j < len)
+	while(j < (len - 1))
 	{
 		if(tab[j] > tab[i])
 		{
@@ -89,12 +89,12 @@ time_t *sort_tab(time_t *tab, int len)
 		i++;
 		j++;
 	}
-	i = 0;
-	j =  + 1;
+	i = len - 1;
+	j = i - 1;
 	tmp = 0;
-	while(j < len)
+	while(j < 0)
 	{
-		if(tab[j] > tab[i])
+		if(tab[j] < tab[i])
 		{
 			tmp = tab[j];
 			tab[j] = tab[i];
@@ -102,20 +102,6 @@ time_t *sort_tab(time_t *tab, int len)
 		}
 		i++;
 		j++;
-	}
-	i = 0;
-	j =  len;
-	tmp = 0;
-	while(j > i)
-	{
-		if(tab[j] > tab[i])
-		{
-			tmp = tab[j];
-			tab[j] = tab[i];
-			tab[i] = tmp;
-		}
-		i++;
-		j--;
 	}
 	return (tab);
 }

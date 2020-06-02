@@ -32,6 +32,8 @@ int print_tmp(char **tmp, ff flags, char *dir)
 				print_l(tmp[i], dir);
 				ft_putchar('\n');
 			}
+			else if (flags.one ==1)
+				ft_putendl(tmp[i]);
 			else
 			{
 				put_spc(tmp[i]);
@@ -52,6 +54,8 @@ int print_tmp(char **tmp, ff flags, char *dir)
 				print_l(tmp[i], dir);
 				ft_putchar('\n');
 			}
+			if(flags.one ==1)
+				ft_putendl(tmp[i]);
 			else
 				put_spc(tmp[i]);
 		}
@@ -74,6 +78,9 @@ int print_tmp(char **tmp, ff flags, char *dir)
 					print_l(tmp[i], dir);
 					ft_putchar('\n');
 				}
+				if(flags.one ==1)
+					ft_putendl(tmp[i]);
+
 				else
 					put_spc(tmp[i]);
 			}
@@ -92,6 +99,8 @@ int print_tmp(char **tmp, ff flags, char *dir)
 					print_l(tmp[i], dir);
 					ft_putchar('\n');
 				}
+				if(flags.one ==1)
+					ft_putendl(tmp[i]);
 				else
 					put_spc(tmp[i]);
 			}
@@ -129,7 +138,7 @@ int exec_flags(ff flags, DIR *dir, char *dname)
 			else
 			{
 				ft_putstr(dname);
-																																
+
 			}
 			ft_putendl("");
 			closedir(dir);

@@ -36,6 +36,10 @@ ff check_flags(ff flags, char *flag)
 		{
 			flags.t = 1;
 		}
+		else if(flag[i] == '1')
+		{
+			flags.one = 1;
+		}
 		else
 		{
 			flags.er = 1;

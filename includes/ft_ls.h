@@ -21,6 +21,7 @@ typedef struct flags {
 	int t;
 	int ll;
 	int er;
+	int one;
 	char **files;
 	int filenum;
 } ff;
